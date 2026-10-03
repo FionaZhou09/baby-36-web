@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#214b40"><meta name="description" content="宝贝三十六计动物园网页试玩：走一走、想一想，练习安全的选择。"><title>宝贝三十六计 · 动物园安全小卫士</title><link rel="icon" href="assets/hero.png"><link rel="stylesheet" href="styles.css"></head>
+<body>
+<svg class="svg-defs" xmlns="http://www.w3.org/2000/svg"><defs><symbol id="leaf" viewBox="0 0 32 32"><path fill="currentColor" d="M27 3C11 2 4 9 6 19c2 9 12 12 18 3 4-6 3-13 3-19Z"/><path d="m10 25 12-15" fill="none" stroke="#f7f4e9" stroke-width="2" stroke-linecap="round"/></symbol><symbol id="arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></symbol></defs></svg>
+<header><a class="brand" href="./"><svg aria-hidden="true"><use href="#leaf"/></svg>宝贝三十六计</a><nav aria-label="游戏设置"><button id="sound" aria-pressed="true">声音：开</button><button id="parents">家长说明</button></nav></header>
+<main>
+ <section class="heading"><div><h1>动物园安全小卫士</h1><p>不独自离开，先问照顾我的大人。</p></div><div class="progress" aria-label="已完成0个挑战，共3个"><span class="stamp"><svg><use href="#leaf"/></svg></span><span class="stamp"><svg><use href="#leaf"/></svg></span><span class="stamp"><svg><use href="#leaf"/></svg></span><strong id="count">0 / 3</strong></div></section>
+ <section id="stage" class="stage" aria-label="动物园小路。点击小路移动，或使用下方左右按钮。">
+  <img class="scenery" src="assets/zoo.png" alt="长颈鹿、河马和斑马在围栏后，前面是一条安全的小路" draggable="false">
+  <div id="hero" class="character hero"><img src="assets/hero.png" alt="你的小角色" draggable="false"><span>你</span></div>
+  <button id="visitor" class="character visitor" aria-label="走到角色身边对话" disabled><span class="bubble">聊一聊</span><img src="assets/visitor.png" alt="一位游客" draggable="false"></button>
+  <button id="goal" class="goal" hidden>集合点<svg aria-hidden="true"><use href="#arrow"/></svg></button>
+  <div id="tap-marker" class="tap-marker" hidden></div>
+ </section>
+ <section class="task-bar"><svg class="task-leaf" aria-hidden="true"><use href="#leaf"/></svg><p id="task" role="status">沿小路走，找到前面的角色</p><button id="action" class="primary">开始探险<svg aria-hidden="true"><use href="#arrow"/></svg></button></section>
+ <section class="controls" aria-label="移动控制"><div class="direction-buttons"><button id="left" aria-label="向左走" disabled><svg class="flip" aria-hidden="true"><use href="#arrow"/></svg></button><button id="right" aria-label="向右走" disabled><svg aria-hidden="true"><use href="#arrow"/></svg></button></div><p id="hint">点小路移动，也可以用左右方向键</p></section>
+ <footer><span>第一关 · 动物园</span><button id="restart">重新开始</button><a href="https://github.com/FionaZhou09/baby-36-web" target="_blank" rel="noopener">开源与素材说明</a></footer>
+</main>
+<dialog id="conversation" aria-labelledby="dialog-title"><div class="dialog-top"><span id="dialog-step">想一想</span><button id="read" aria-label="朗读题目">再听一次</button></div><h2 id="dialog-title"></h2><p id="quote" class="quote"></p><p id="prompt">你会怎么做？</p><div id="choices"></div><div id="feedback" hidden><p id="explanation" role="status"></p><button id="continue" class="primary"></button></div></dialog>
+<dialog id="help" aria-labelledby="help-title"><h2 id="help-title">一起练习安全的选择</h2><p>这一关改编自《宝贝三十六计》的动物园场景，约需 3–5 分钟。孩子可以点小路走动，或按住左右按钮。</p><p>完成三个情境后，回到集合点。选错不会扣分，可以听解释后再试。</p><p><strong>陪孩子聊一聊：</strong>不凭外表判断谁安全；离开前先征求照顾自己的大人同意。需要帮助时，和孩子约定好可以求助的人及集合地点。</p><p class="small">朗读使用设备自带中文语音。如果没有声音，可由家长读题。刷新页面会重新开始。无需账号，不保存孩子的个人信息。</p><button id="close-help" class="primary">知道了，回到游戏</button></dialog>
+<dialog id="win" aria-labelledby="win-title"><svg class="win-leaf" aria-hidden="true"><use href="#leaf"/></svg><p class="finish-label">三个安全选择，都完成了</p><h2 id="win-title">安全小卫士，就是你！</h2><p>不独自离开，先问照顾我的大人。<br>现在和家长说说，你记住了哪一个办法？</p><button id="play-again" class="primary">再探险一次</button></dialog>
+<script type="module" src="src/main.js"></script>
+</body></html>

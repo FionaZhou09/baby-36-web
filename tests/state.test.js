@@ -1,0 +1,8 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {createGame,start,move,encounter,answer,continueGame,finish,questions} from '../src/state.js';
+function arrive(s){move(s,questions[s.completed].x);encounter(s);}
+test('a child must start and approach a character before answering',()=>{const s=createGame();answer(s,0);assert.equal(s.completed,0);move(s,35);assert.equal(s.x,9);start(s);encounter(s);assert.equal(s.phase,'explore');arrive(s);assert.equal(s.phase,'question');});
+test('wrong choices allow retry without awarding an extra stamp',()=>{const s=createGame();start(s);arrive(s);answer(s,questions[0].options.findIndex(x=>!x.safe));assert.equal(s.phase,'feedback');assert.equal(s.completed,0);continueGame(s);assert.equal(s.phase,'question');answer(s,questions[0].options.findIndex(x=>x.safe));answer(s,0);assert.equal(s.completed,1);continueGame(s);assert.equal(s.phase,'explore');});
+test('three encounters plus returning to the goal complete the level',()=>{const s=createGame();start(s);move(s,94);finish(s);assert.notEqual(s.phase,'won');for(let i=0;i<3;i++){arrive(s);answer(s,questions[i].options.findIndex(x=>x.safe));continueGame(s);}assert.equal(s.completed,3);finish(s);assert.equal(s.phase,'explore');move(s,94);finish(s);assert.equal(s.phase,'won');assert.deepEqual(createGame(),{phase:'ready',x:9,completed:0,correct:null,choice:null});});
+test('movement stays on walkway, freezes in dialogs and rejects invalid choices',()=>{const s=createGame();start(s);move(s,-900);assert.equal(s.x,5);move(s,500);assert.equal(s.x,94);move(s,NaN);assert.equal(s.x,94);move(s,questions[0].x);encounter(s);const x=s.x;move(s,60);assert.equal(s.x,x);answer(s,99);assert.equal(s.phase,'question');});
